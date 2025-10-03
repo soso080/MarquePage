@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter une œuvre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Ajouter une œuvre</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="text" name="titre" placeholder="Titre" required>
+        <input type="text" name="img" placeholder="URL de l’image (optionnel)">
+        <p>Ou bien importer une image :</p>
+        <input type="file" name="img_file" accept="image/*">
+        <input type="text" name="ep" placeholder="Épisode / Chapitre" required>
+        <button type="submit">Ajouter</button>
+    </form>
+</div>
+
+</body>
+</html>

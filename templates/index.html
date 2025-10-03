@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mes Marque-pages</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header>
+    <h1>📚 Mes Marque-pages</h1>
+    <nav>
+        <span>Bonjour {{ user.username }}</span>
+        <a href="{{ url_for('logout') }}">Déconnexion</a>
+        <a href="{{ url_for('add') }}">➕ Ajouter une œuvre</a>
+    </nav>
+</header>
+
+<section class="search-bar">
+    <form method="get" action="{{ url_for('index') }}">
+        <input type="text" name="q" placeholder="Rechercher une œuvre..." value="{{ search or '' }}">
+        <button type="submit">Rechercher</button>
+    </form>
+</section>
+
+<main class="grid">
+    {% for p in products %}
+    <div class="card">
+        <img src="{{ p.img }}" alt="{{ p.titre }}">
+        <h3>{{ p.titre }}</h3>
+        <p>Progression : {{ p.ep }}</p>
+        <form method="post" action="{{ url_for('update', id=p._id) }}">
+            <input type="text" name="ep" placeholder="Nouvel épisode">
+            <button type="submit">Mettre à jour</button>
+        </form>
+        <form method="post" action="{{ url_for('delete', id=p._id) }}" onsubmit="return confirm('Supprimer cette œuvre ?');">
+            <button type="submit" class="delete-btn">Supprimer</button>
+        </form>
+    </div>
+    {% endfor %}
+</main>
+
+</body>
+</html>
