@@ -139,5 +139,7 @@ def delete(id):
     all_col.delete_one({"_id": ObjectId(id)})
     return redirect(url_for("index"))
 
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render fournit PORT
+    app.run(host="0.0.0.0", port=port, debug=True)
